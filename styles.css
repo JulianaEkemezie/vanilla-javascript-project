@@ -1,6 +1,6 @@
 .lagos {
     color: #3D3D3D;
-    font-size: 45px;
+    font-size: 30px;
     font-weight: normal;
     line-height: 40px;
     padding-top: 20px;
@@ -31,6 +31,15 @@ li {
     width: 600px
 }
 
+.temp {
+    font-size: 45px;
+}
+
 .temperature {
-    margin-left: 40px;
+    margin-left: 50px;
+}
+
+.units {
+    position: absolute;
+    top: 1px
 }
