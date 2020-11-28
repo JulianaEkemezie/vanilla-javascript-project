@@ -29,6 +29,13 @@ let form = document.querySelector("#form-submit")
 form.addEventListener("submit", formFunc)
 
 function showCity(response) {
+    let temperature = document.querySelector("#temp")
+    temperature.innerHTML = `${Math.round(response.data.main.temp)}`
+    let humidity = document.querySelector("#humidity")
+    humidity.innerHTML = `Humidty: ${Math.round(response.data.main.humidity)}%`
+    let wind = document.querySelector("#wind")
+    wind.innerHTML = `Wind: ${Math.round(response.data.wind.speed)}Km/h`
+
 
 }
 
