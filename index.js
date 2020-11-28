@@ -27,3 +27,14 @@ function formFunc(event) {
 }
 let form = document.querySelector("#form-submit")
 form.addEventListener("submit", formFunc)
+
+function showCity(response) {
+
+}
+
+
+let city = "Paris"
+let apiKey = "193afd01b965f6a8b5609e9278812cbe"
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
+
+axios.get(apiUrl).then(showCity)
