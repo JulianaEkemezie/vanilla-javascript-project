@@ -1,0 +1,36 @@
+.lagos {
+    color: #3D3D3D;
+    font-size: 45px;
+    font-weight: normal;
+    line-height: 40px;
+    padding-top: 20px;
+}
+
+.boxes {
+    color: #3D3D3D;
+    border-radius: 4px;
+    line-height: 2.5;
+    margin-left: 32px;
+    margin-top: 40px;
+}
+
+.blue {
+    margin-left: 10px
+}
+
+.date {
+    padding: 3px;
+}
+
+li {
+    list-style-type: none;
+}
+
+.wrapper {
+    border: 1px solid #3D3D3D;
+    width: 600px
+}
+
+.temperature {
+    margin-left: 40px;
+}
