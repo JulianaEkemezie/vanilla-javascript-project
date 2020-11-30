@@ -1,16 +1,12 @@
-let now = new Date()
-let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-let day = days[now.getDay()]
-let hour = now.getHours()
-if (hour < 10) {
-    `0${hour}`
+function timeUpdate(timestamp) {
+    let now = new Date(timestamp)
+    let hour = now.getHours()
+    let min = now.getMinutes()
+    let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    let day = days[now.getDay()]
+    return `Last Updated: ${day} ${hour}:${min}`
 }
-let min = now.getMinutes()
-if (min < 10) {
-    `0${min}`
-}
-let date = document.querySelector("#date")
-date.innerHTML = `Last Updated: ${day} ${hour}:${min}`
+
 
 //select form
 // add event
@@ -24,24 +20,37 @@ function formFunc(event) {
     let cityInput = document.querySelector("#city-input").value
     let displayCity = document.querySelector("#lagos")
     displayCity.innerHTML = cityInput
+    search(cityInput)
 }
-let form = document.querySelector("#form-submit")
-form.addEventListener("submit", formFunc)
+
+
+
 
 function showCity(response) {
     let temperature = document.querySelector("#temp")
-    temperature.innerHTML = `${Math.round(response.data.main.temp)}`
     let humidity = document.querySelector("#humidity")
-    humidity.innerHTML = `Humidty: ${Math.round(response.data.main.humidity)}%`
     let wind = document.querySelector("#wind")
-    wind.innerHTML = `Wind: ${Math.round(response.data.wind.speed)}Km/h`
+    let description = document.querySelector("#weather")
+    let date = document.querySelector("#date")
+    let icon = document.querySelector("#icon")
 
+    temperature.innerHTML = `${Math.round(response.data.main.temp)}`
+    humidity.innerHTML = `Humidty: ${Math.round(response.data.main.humidity)}%`
+    wind.innerHTML = `Wind: ${Math.round(response.data.wind.speed)}Km/h`
+    description.innerHTML = `${response.data.weather[0].description}`
+    icon.setAttribute("src", `http://openweathermap.org/img/wn/04d@2x.png`)
+    date.innerHTML = timeUpdate(response.data.dt * 1000)
 
 }
 
+function search(city) {
+    let apiKey = "193afd01b965f6a8b5609e9278812cbe"
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
 
-let city = "Paris"
-let apiKey = "193afd01b965f6a8b5609e9278812cbe"
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
+    axios.get(apiUrl).then(showCity)
+}
 
-axios.get(apiUrl).then(showCity)
+let form = document.querySelector("#form-submit")
+form.addEventListener("submit", formFunc)
+
+search("lagos")

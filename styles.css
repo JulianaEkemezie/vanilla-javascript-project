@@ -22,13 +22,20 @@
     padding: 3px;
 }
 
+#weather {
+    text-transform: capitalize;
+}
+
+#icon {
+    width: 100px;
+}
+
 li {
     list-style-type: none;
 }
 
-.wrapper {
-    border: 1px solid #3D3D3D;
-    width: 600px
+p {
+    text-align: center;
 }
 
 .temp {
@@ -42,4 +49,12 @@ li {
 .units {
     position: absolute;
     top: 1px
+}
+
+.wrapper {
+    border: 1px solid #3D3D3D;
+    border-radius: 4px;
+    display: block;
+    margin: 0 auto;
+    width: 600px;
 }
