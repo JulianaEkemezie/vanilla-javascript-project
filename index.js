@@ -66,7 +66,17 @@ function celsiusFunc(event) {
     temperature.innerHTML = Math.round(tempInCelsius)
 }
 
+function ButtonClick(event) {
+    event.preventDefault()
+    let cityInput = document.querySelector("#city-input").value
+    let displayCity = document.querySelector("#lagos")
+    displayCity.innerHTML = cityInput
 
+}
+
+
+let searchButton = document.querySelector("#search-icon")
+searchButton.addEventListener("click", ButtonClick)
 let tempInCelsius = null
 
 let form = document.querySelector("#form-submit")
