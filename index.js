@@ -40,7 +40,7 @@ function showCity(response) {
     description.innerHTML = `${response.data.weather[0].description}`
     icon.setAttribute("src", `http://openweathermap.org/img/wn/04d@2x.png`)
     date.innerHTML = timeUpdate(response.data.dt * 1000)
-
+    tempInCelsius = `${Math.round(response.data.main.temp)}`
 }
 
 function search(city) {
@@ -50,7 +50,25 @@ function search(city) {
     axios.get(apiUrl).then(showCity)
 }
 
+function tempInFarenheit(event) {
+    let tempDisplay = document.querySelector("#temp")
+    tempDisplay.innerHTML = Math.round((tempInCelsius * 9 / 5) + 32)
+}
+
+function celsiusFunc(event) {
+    event.preventDefault()
+
+}
+
+
+let tempInCelsius = null
 let form = document.querySelector("#form-submit")
 form.addEventListener("submit", formFunc)
+
+let farenheit = document.querySelector("#farenheit-temp")
+farenheit.addEventListener("click", tempInFarenheit)
+
+let celsius = document.querySelector("#celsius-temp")
+celsius.addEventListener("click", celsiusFunc)
 
 search("lagos")
