@@ -53,12 +53,16 @@ function search(city) {
 function tempInFarenheit(event) {
     event.preventDefault()
     let temperature = document.querySelector("#temp")
+    celsius.classList.remove("active")
+    farenheit.classList.add("active")
     temperature.innerHTML = Math.round((tempInCelsius * 9 / 5) + 32)
 }
 
 function celsiusFunc(event) {
     event.preventDefault()
     let temperature = document.querySelector("#temp")
+    farenheit.classList.remove("active")
+    celsius.classList.add("active")
     temperature.innerHTML = Math.round(tempInCelsius)
 }
 
