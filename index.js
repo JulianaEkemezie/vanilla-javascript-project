@@ -51,17 +51,20 @@ function search(city) {
 }
 
 function tempInFarenheit(event) {
-    let tempDisplay = document.querySelector("#temp")
-    tempDisplay.innerHTML = Math.round((tempInCelsius * 9 / 5) + 32)
+    event.preventDefault()
+    let temperature = document.querySelector("#temp")
+    temperature.innerHTML = Math.round((tempInCelsius * 9 / 5) + 32)
 }
 
 function celsiusFunc(event) {
     event.preventDefault()
-
+    let temperature = document.querySelector("#temp")
+    temperature.innerHTML = Math.round(tempInCelsius)
 }
 
 
 let tempInCelsius = null
+
 let form = document.querySelector("#form-submit")
 form.addEventListener("submit", formFunc)
 

@@ -1,3 +1,8 @@
+.active {
+    color: #3D3D3D;
+    cursor: default;
+}
+
 .lagos {
     color: #3D3D3D;
     font-size: 30px;
@@ -57,4 +62,8 @@ p {
     display: block;
     margin: 0 auto;
     width: 600px;
+}
+
+.active:hover {
+    text-decoration: none;
 }
