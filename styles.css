@@ -3,6 +3,10 @@
     cursor: default;
 }
 
+.active:hover {
+    text-decoration: none;
+}
+
 .lagos {
     color: #3D3D3D;
     font-size: 30px;
@@ -11,16 +15,16 @@
     padding-top: 20px;
 }
 
+.blue {
+    margin-left: 10px
+}
+
 .boxes {
     color: #3D3D3D;
     border-radius: 4px;
-    line-height: 2.5;
+    line-height: 3;
     margin-left: 32px;
     margin-top: 40px;
-}
-
-.blue {
-    margin-left: 10px
 }
 
 .date {
@@ -68,16 +72,26 @@ p {
     width: 600px;
 }
 
-.active:hover {
-    text-decoration: none;
-}
-
 #weather {
     text-transform: capitalize;
+}
+
+.weather-forecast {
+    margin-bottom: 20px;
 }
 
 .weather-forecast-temp {
     line-height: 1;
     font-size: 15px;
     font-weight: normal;
+}
+
+.wrapper {
+    background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
+    border: 1px solid #3D3D3D;
+    border-radius: 4px;
+    display: block;
+    margin: 0 auto;
+    width: 600px;
+    margin-top: 40px;
 }

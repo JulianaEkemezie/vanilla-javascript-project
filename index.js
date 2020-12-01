@@ -14,7 +14,6 @@ function formFunc(event) {
     search(cityInput)
 }
 
-
 function showCity(response) {
     let temperature = document.querySelector("#temp")
     let humidity = document.querySelector("#humidity")
@@ -70,7 +69,6 @@ function weatherForecast(response) {
     }
 
 }
-
 
 function search(city) {
     let apiKey = "193afd01b965f6a8b5609e9278812cbe"
