@@ -1,16 +1,9 @@
 function timeUpdate(timestamp) {
     let now = new Date(timestamp)
-    let hour = now.getHours()
-    if (hour < 10) {
-        hour = `0${hour}`
-    }
-    let min = now.getMinutes()
-    if (min < 10) {
-        min = `0${min}`
-    }
+
     let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     let day = days[now.getDay()]
-    return `Last Updated: ${day} ${hour}:${min}`
+    return `Last Updated: ${day} ${formatHour(timestamp)}`
 }
 
 function formFunc(event) {
@@ -39,18 +32,32 @@ function showCity(response) {
     tempInCelsius = `${Math.round(response.data.main.temp)}`
 }
 
+function formatHour(timestamp) {
+    let now = new Date(timestamp)
+    let hour = now.getHours()
+    if (hour < 10) {
+        hour = `0${hour}`
+    }
+    let min = now.getMinutes()
+    if (min < 10) {
+        min = `0${min}`
+    }
+
+    return `${hour}:${min}`
+
+}
+
 function weatherForecast(response) {
     let forecastElement = document.querySelector("#weather-forecast")
-    let forecast = response.data.list[0]
-
-
-
-    console.log(forecastElement)
-    forecastElement.innerHTML = `
+    forecastElement.innerHTML = null
+    let forecast = null
+    for (let i = 0; i < 6; i++) {
+        forecast = response.data.list[i]
+        forecastElement.innerHTML += `
 <div class="col-2">
-      <h6 class="forecast-info">21:00</h6>
+      <h6 class="forecast-info">${formatHour(forecast.dt*1000)}</h6>
       <img
-       src="https://previews.123rf.com/images/pavelstasevich/pavelstasevich1811/pavelstasevich181100996/127533115-sunny-weather-icon-sun-icon-vector-illustration-flat.jpg"
+       src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
        alt="weather-icon"
        id="forecast-icon"
        width="70px"
@@ -58,8 +65,10 @@ function weatherForecast(response) {
       <div class="weather-forecast-temp forecast-info">
        <span class="strong">${Math.round(forecast.main.temp_max)}°</span> ${Math.round(forecast.main.temp_min)}°
                 </div>
-            </div>
-        </div>`
+            </div>`
+
+    }
+
 }
 
 
