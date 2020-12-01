@@ -27,8 +27,8 @@
     padding: 3px;
 }
 
-#weather {
-    text-transform: capitalize;
+.forecast-info {
+    margin-left: 15px;
 }
 
 #icon {
@@ -41,6 +41,10 @@ li {
 
 p {
     text-align: center;
+}
+
+.strong {
+    font-weight: bold;
 }
 
 .temp {
@@ -66,4 +70,14 @@ p {
 
 .active:hover {
     text-decoration: none;
+}
+
+#weather {
+    text-transform: capitalize;
+}
+
+.weather-forecast-temp {
+    line-height: 1;
+    font-size: 15px;
+    font-weight: normal;
 }

@@ -1,19 +1,17 @@
 function timeUpdate(timestamp) {
     let now = new Date(timestamp)
     let hour = now.getHours()
+    if (hour < 10) {
+        hour = `0${hour}`
+    }
     let min = now.getMinutes()
+    if (min < 10) {
+        min = `0${min}`
+    }
     let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     let day = days[now.getDay()]
     return `Last Updated: ${day} ${hour}:${min}`
 }
-
-
-//select form
-// add event
-//select type area
-//set value
-//select display area
-// change innerhtml to value set
 
 function formFunc(event) {
     event.preventDefault()
@@ -22,8 +20,6 @@ function formFunc(event) {
     displayCity.innerHTML = cityInput
     search(cityInput)
 }
-
-
 
 
 function showCity(response) {
@@ -38,16 +34,43 @@ function showCity(response) {
     humidity.innerHTML = `Humidty: ${Math.round(response.data.main.humidity)}%`
     wind.innerHTML = `Wind: ${Math.round(response.data.wind.speed)}Km/h`
     description.innerHTML = `${response.data.weather[0].description}`
-    icon.setAttribute("src", `http://openweathermap.org/img/wn/04d@2x.png`)
+    icon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
     date.innerHTML = timeUpdate(response.data.dt * 1000)
     tempInCelsius = `${Math.round(response.data.main.temp)}`
 }
+
+function weatherForecast(response) {
+    let forecastElement = document.querySelector("#weather-forecast")
+    let forecast = response.data.list[0]
+
+
+
+    console.log(forecastElement)
+    forecastElement.innerHTML = `
+<div class="col-2">
+      <h6 class="forecast-info">21:00</h6>
+      <img
+       src="https://previews.123rf.com/images/pavelstasevich/pavelstasevich1811/pavelstasevich181100996/127533115-sunny-weather-icon-sun-icon-vector-illustration-flat.jpg"
+       alt="weather-icon"
+       id="forecast-icon"
+       width="70px"
+      />
+      <div class="weather-forecast-temp forecast-info">
+       <span class="strong">${Math.round(forecast.main.temp_max)}°</span> ${Math.round(forecast.main.temp_min)}°
+                </div>
+            </div>
+        </div>`
+}
+
 
 function search(city) {
     let apiKey = "193afd01b965f6a8b5609e9278812cbe"
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
 
     axios.get(apiUrl).then(showCity)
+
+    apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`
+    axios.get(apiUrl).then(weatherForecast)
 }
 
 function tempInFarenheit(event) {
