@@ -119,3 +119,9 @@ let celsius = document.querySelector("#celsius-temp")
 celsius.addEventListener("click", celsiusFunc)
 
 search("lagos")
+
+
+function updateCity(event) {
+    event.preventDefault()
+    console.log(event)
+}
