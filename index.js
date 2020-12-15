@@ -66,7 +66,9 @@ function weatherForecast(response) {
 <div class="col-2">
       <h6 class="forecast-info">${formatHour(forecast.dt * 1000)}</h6>
       <img
-       src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
+       src="https://openweathermap.org/img/wn/${
+        forecast.weather[0].icon
+       }@2x.png"
        alt="weather-icon"
        id="forecast-icon"
        width="70px"
